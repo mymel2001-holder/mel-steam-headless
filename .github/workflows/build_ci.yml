@@ -1,6 +1,8 @@
 name: Build and Publish Docker Image to GHCR
 
 on:
+  workflow_dispatch:
+    branches: [ main ]
   push:
     branches: [ main ] # Trigger on pushes to the main branch
   pull_request:
