@@ -499,9 +499,9 @@ RUN \
             va-driver-all \
     && \
     echo "**** Download pinned Sunshine release ****" \
-        && SUNSHINE_RELEASE="v2026.516.143833" \
-        && SUNSHINE_RELEASE_JSON="$(curl -fsSL "https://api.github.com/repos/LizardByte/Sunshine/releases/tags/${SUNSHINE_RELEASE}")" \
-        && SUNSHINE_URL="$(printf '%s' "${SUNSHINE_RELEASE_JSON}" | jq -er '[.assets[] | select(.name | test("^(sunshine_.*\\+debiantrixie_amd64|sunshine-debian-trixie-amd64)\\.deb$")) | .browser_download_url][0]')" \
+        && SUNSHINE_RELEASE_JSON="$(curl -fsSL "https://api.github.com/repos/LizardByte/Sunshine/releases/latest")" \
+        && SUNSHINE_RELEASE="$(printf '%s' "${SUNSHINE_RELEASE_JSON}" | sed -n 's/.*"tag_name": "\([^"]*\)".*/\1/p')" \
+        && SUNSHINE_URL="$(printf '%s' "${SUNSHINE_RELEASE_JSON}" | jq -er 'first(.assets[] | select(.name | test("^(sunshine_.*\\+debian.*_amd64|sunshine-debian.*amd64)\\.deb$")) | .browser_download_url)' | head -n1)" \
         && echo "Downloading Sunshine ${SUNSHINE_RELEASE} from ${SUNSHINE_URL}" \
         && wget -O /usr/src/sunshine.deb "${SUNSHINE_URL}" \
     && \
