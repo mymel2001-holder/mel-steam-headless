@@ -332,7 +332,7 @@ RUN \
         && mkdir -p /opt \
         && cd /opt \
         && rm -rf /opt/frontend \
-        && git clone https://github.com/Steam-Headless/frontend.git --branch v2-update /opt/frontend \
+        && git clone https://github.com/mymel2001-holder/mel-steam-headless-frontend.git --branch classic /opt/frontend \
         && cd /opt/frontend \
         && git checkout ${FRONTEND_VERSION} 2> /dev/null \
         && git submodule init \
