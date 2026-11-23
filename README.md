@@ -1,4 +1,4 @@
-# Headless Steam Service
+# Headless Steam Service Classic
 
 ![](./images/banner.jpg)
 
